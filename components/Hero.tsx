@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const titleText = "Déménagez l'esprit léger.";
@@ -37,27 +37,27 @@ const Hero: React.FC = () => {
 
   return (
     <section id="hero" className="relative h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-blue-50 to-white">
-      <img 
-        src="https://res.cloudinary.com/casden-edito/images/f_auto,q_auto/v1674127296/prod/MAG-demenagement_933836381/MAG-demenagement_933836381.jpg?_i=AA" 
-        alt="Déménagement" 
-        className="absolute inset-0 w-full h-full object-cover z-0" 
+      <img
+        src="/hero-bg.png"
+        alt="Déménagement"
+        className="absolute inset-0 w-full h-full object-cover z-0"
       />
-      <motion.div 
+      <motion.div
         className="absolute inset-0 bg-gradient-to-b from-blue-100/50 to-stone-50 z-0"
-        animate={{ 
+        animate={{
           backgroundPosition: ['0% 0%', '0% 100%'],
           scale: [1, 1.05, 1],
         }}
-        transition={{ 
-          duration: 20, 
-          repeat: Infinity, 
-          repeatType: "reverse", 
-          ease: "easeInOut" 
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          repeatType: "reverse",
+          ease: "easeInOut"
         }}
       />
 
       <div className="z-10 max-w-4xl px-6 text-center">
-        <motion.h1 
+        <motion.h1
           className="text-5xl md:text-7xl font-bold text-stone-800 leading-tight mb-8"
           variants={container}
           initial="hidden"
@@ -70,7 +70,7 @@ const Hero: React.FC = () => {
           ))}
         </motion.h1>
 
-        <motion.p 
+        <motion.p
           className="text-xl md:text-2xl text-stone-500 font-light mb-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -87,10 +87,25 @@ const Hero: React.FC = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <span className="relative z-10">Commencer maintenant</span>
+          <span className="relative z-10">Vérifier ma date </span>
           <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
         </motion.button>
       </div>
+
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer z-10"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 3.5, duration: 0.8 }}
+      >
+        <span className="text-stone-500 text-sm font-medium">Scroll pour comprendre</span>
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ChevronDown className="w-6 h-6 text-stone-500" />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

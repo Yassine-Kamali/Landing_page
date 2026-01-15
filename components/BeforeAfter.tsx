@@ -10,12 +10,12 @@ const BeforeAfter: React.FC = () => {
     if (!containerRef.current) return;
     const { width, left } = containerRef.current.getBoundingClientRect();
     const clientX = 'touches' in info.point ? info.point.x : info.point.x; // Framer motion normalize points
-    
+
     // Calculate percentage based on pointer position relative to container
     // However, Framer Motion drag constraints are easier for the handle.
     // Let's use a simpler approach: update state based on drag x position.
   };
-  
+
   // Using native event handling for slider logic as it's often smoother for this specific UI pattern
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.buttons !== 1 || !containerRef.current) return;
@@ -43,7 +43,7 @@ const BeforeAfter: React.FC = () => {
           <p className="text-stone-500">Glissez pour voir la transformation.</p>
         </div>
 
-        <div 
+        <div
           ref={containerRef}
           className="relative w-full aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden cursor-ew-resize shadow-2xl select-none"
           onMouseMove={handleMouseMove}
@@ -52,35 +52,35 @@ const BeforeAfter: React.FC = () => {
         >
           {/* "Before" Image (Base layer) - Messy/Stressful */}
           <div className="absolute inset-0 bg-stone-300 flex items-center justify-center overflow-hidden">
-             {/* Simulating an image with a div and pattern/color since we can use picsum */}
-             <img 
-               src="https://picsum.photos/id/668/1200/600?grayscale" 
-               alt="Appartement en désordre" 
-               className="object-cover w-full h-full opacity-80"
-             />
-             <div className="absolute inset-0 bg-red-900/10 mix-blend-multiply" />
-             <div className="absolute top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2 bg-white/90 px-4 py-2 rounded text-red-800 font-bold shadow-sm">
-               AVANT
-             </div>
+            {/* Simulating an image with a div and pattern/color since we can use picsum */}
+            <img
+              src="/before-move.png"
+              alt="Appartement en désordre"
+              className="object-cover w-full h-full opacity-80"
+            />
+            <div className="absolute inset-0 bg-red-900/10 mix-blend-multiply" />
+            <div className="absolute top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2 bg-white/90 px-4 py-2 rounded text-red-800 font-bold shadow-sm">
+              AVANT
+            </div>
           </div>
 
           {/* "After" Image (Top layer, clipped) - Clean/Zen */}
-          <div 
+          <div
             className="absolute inset-0 bg-blue-50 overflow-hidden"
             style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
           >
-            <img 
-               src="https://picsum.photos/id/225/1200/600" 
-               alt="Appartement zen" 
-               className="object-cover w-full h-full"
-             />
-             <div className="absolute top-1/2 right-1/4 -translate-y-1/2 translate-x-1/2 bg-white/90 px-4 py-2 rounded text-green-800 font-bold shadow-sm">
-               APRÈS
-             </div>
+            <img
+              src="/after-move.png"
+              alt="Appartement zen"
+              className="object-cover w-full h-full"
+            />
+            <div className="absolute top-1/2 right-1/4 -translate-y-1/2 translate-x-1/2 bg-white/90 px-4 py-2 rounded text-green-800 font-bold shadow-sm">
+              APRÈS
+            </div>
           </div>
 
           {/* Slider Handle */}
-          <div 
+          <div
             className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize z-20"
             style={{ left: `${sliderPosition}%` }}
           >
